@@ -158,7 +158,7 @@ function runQuery() {
             }
             else
             {
-
+                secondFilterValue.push({ secondFilterValue: " " });
                 filterOperator.push({ filterOperator: filterField });
                 filterValue.push({ filterValue: filterText });
             }

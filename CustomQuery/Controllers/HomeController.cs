@@ -133,6 +133,7 @@ namespace CustomQuery.Controllers
                         }
                         else
                         {
+                            
                             whereArray.Add(FinalQuery.ColumnNames[i].ColumnName.ToString() + " "
                             + FinalQuery.FilterOperators[i].FilterOperator.ToString() + " "
                             + FinalQuery.FilterValues[i].FilterValue.ToString());
@@ -253,6 +254,8 @@ namespace CustomQuery.Controllers
 
                 }
             }
+
+
 
             // Add comma seperators to the select section
             foreach (var j in columnArray)
