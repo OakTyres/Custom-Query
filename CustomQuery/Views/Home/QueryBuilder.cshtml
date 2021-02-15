@@ -1,0 +1,52 @@
+﻿
+@model CustomQuery.Models.QueryObject
+@{
+    ViewData["Title"] = "QueryBuilder";
+}
+<div id="indexToHide">
+    <div>
+        <h1 class="text-center " id="tableName">@Model.tableName</h1>
+        <h2 class="text-left">Select the columns you need </h2>
+        <br>
+        <div class="float-right" style=" margin-bottom: 25px">
+            <button type="submit" id="submitButton" class=" btn bg-light border-primary text-dark" onclick="queryDataCollector()" style="justify-items: right">Next</button>
+        </div>
+        @*<button type="button" class="queryBTN btn bg-primary border-primary text-dark w-50" id="confirmButton" onclick="queryDataCollector()">Next</button>*@
+        @{
+            var columnId = 0;
+            var totalColumns = 0;
+            foreach (var item in Model.ColumnNames)
+            {
+                totalColumns++;
+            }
+        }
+        <p id="cCount" hidden="hidden">@totalColumns</p>
+
+
+        <div class="row">
+            @for (var column = 0; column < totalColumns; column++)
+            {
+                <div class="col-5 col-md-3 col-lg-2">
+                    <div class="card">
+                        @*<div class="card bg-secondary">*@
+                        <div class="card-body text-center text-black">
+                            <div class="card-body">
+                                <p class="card-text" style=" font-size: 13px">@Model.ColumnNames[column].ColumnName</p><input type="checkbox" class="custom-checkbox" id="@columnId" name="@Model.ColumnNames[column].ColumnName" />
+                                <p hidden id="type@(columnId)" name="@Model.ColumnTypes[column].ColumnType"></p>
+                            </div>
+                        </div>
+                        @*</div>*@
+                    </div>
+                </div>
+                columnId++;
+            }
+        </div>
+        <br />
+        <div class="float-right" style=" margin-bottom: 25px">
+            <button type="submit" id="submitButton" class=" btn bg-light border-primary text-dark" onclick="queryDataCollector()" style="justify-items: right">Next</button>
+        </div>
+    </div>
+</div>
+    <div class="addQueryOptions" id="addQueryOptions"></div>
+    <div class="displayReport" id="displayReport"></div>
+

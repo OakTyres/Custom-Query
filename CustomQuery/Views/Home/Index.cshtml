@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var UserName = Context.User.Identity.Name;
+}
+
+    <div class="container text-center">
+        <h2 class="text-center text-primary">Choose a table for your query</h2>
+        <br />
+        <br />
+        <div class="card-columns">
+
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Stock" class="queryBTN btn btn-fix text-left" id="Stock">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Stock</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Stockdyn" class="queryBTN btn btn-fix text-left" id="Stockdyn">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Stockdyn</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Stockhis" class="queryBTN btn btn-fix text-left" id="Stockhis">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Stockhis</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Customer" class="queryBTN btn btn-fix text-left" id="Customer">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Customer</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Custint" class="queryBTN btn btn-fix text-left" id="Custint">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Custint</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Contract" class="queryBTN btn btn-fix text-left" id="Contract">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Contract</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Transc" class="queryBTN btn btn-fix text-left" id="Transc">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Transc</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Ordtran" class="queryBTN btn btn-fix text-left" id="Ordtran">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Ordtran</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Montlist" class="queryBTN btn btn-fix text-left" id="Trnlist">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Trnlist</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Montstk" class="queryBTN btn btn-fix text-left" id="Trnstk">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Trnstk</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-light">
+                <a href="/Home/QueryBuilder?data=Serstk" class="queryBTN btn btn-fix text-left" id="Serstk">
+                    <div class="card-body text-center text-black">
+                        <p class="card-text">Serstk</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        @*<script>
+
+                 $(document).ready(function () {
+
+                    $("#Stock").onclick(function () {
+
+                        var idtoQuery = $(this).attr('id');
+                        alert(idtoQuery);
+
+                    });
+
+                });
+            </script>*@
+
+    </div>
+
+
+
+

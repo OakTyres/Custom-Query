@@ -1,0 +1,52 @@
+﻿@model List<CustomQuery.Models.SavedQuery>
+
+@{
+    ViewData["Title"] = "SavedQueries";
+    var UserName = Context.User.Identity.Name.Replace("OAKTYRES\\", "");
+}
+<p hidden="hidden" id="username">@UserName</p>
+<div id="queriesToHide">
+    <h1>My Queries</h1>
+
+    <hr />
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Query Name
+                </th>
+                <th style="text-align: center">
+                    View
+                </th>
+                <th style="text-align: center">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QueryName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "EditUniform", new { Id = item.Id })*@
+                    <div style="text-decoration: underline; color: cornflowerblue"><button id="LoadButton" onclick="sendId(@item.Id.ToString())" class="btn btn-outline-primary btn-sm btn-block">Run Report</button></div>
+                </td>
+                <!--<td>-->
+                @*@Html.ActionLink("Edit", "EditUniform", new { Id = item.Id })*@
+                <!--<div style="text-decoration: underline; color:crimson"><button id="DeleteButton" onclick="deleteId(@item.Id.ToString())" class="btn btn-outline-primary btn-sm btn-block">Delete Report</button></div>
+    </td>-->
+                <td>
+                    @*@Html.ActionLink("Edit", "EditUniform", new { Id = item.Id })*@
+                    <div style="text-decoration: underline; color: cornflowerblue"><button id="DeleteButton" class="btn btn-outline-primary btn-sm btn-block" onclick= "window.location.href='/Home/DeleteReport?Id=@item.Id&username=@UserName'">Delete</button></div>
+                </td>
+                @*@Html.ActionLink("Delete", "DeleteReport", new { Id = item.Id }, new { username = UserName })*@
+            </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+    <div class="displayLoadedReport" id="displayLoadedReport"></div>

@@ -1,0 +1,146 @@
+﻿
+@model CustomQuery.Models.QueryObject
+
+
+<div class="addQueryOptions" id="addQueryOptions"></div>
+
+@*@{
+    var tblName = Model.tableName;
+    var counter = 0;
+    var totalColumns = 0;
+    foreach (var item in Model.ColumnNames)
+    {
+        totalColumns++;
+    }
+}
+    <p hidden id="columnCount">@totalColumns</p>
+    <H1 id="tblName">@tblName</H1>
+    <br>
+    <h3>Add your filters</h3>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    Column Name
+                </th>
+                <th hidden="true">
+                    Column Type
+                </th>
+                <th>
+                    Filter Type
+                </th>
+                <th>
+                    Filter Value
+                </th>
+                <th>
+                    Optional Between Value
+                </th>
+                <th>
+                    View Column in Report?
+                </th>
+                <th>
+                    Additional Actions
+                </th>
+
+            </tr>
+        </thead>
+        @for (var i = 0; i < totalColumns; i++)
+        {
+            <tr>
+                <td>
+                    <div id="columnName@(counter)">@Model.ColumnNames[i].ColumnName</div>
+                </td>
+                <td hidden="true">
+                    <div id="columnType@(counter)">@Model.ColumnTypes[i].ColumnType</div>
+                </td>
+                <td>
+
+                    <select id="filterType@(counter)">
+                        <option value="placeholder" id="placeholder">Choose one</option>
+                        <option value="=" id="equals">equal to</option>
+                        <option value="not=" id="notEquals">not equal to</option>
+                        <option value="greaterThan" id="greater">greater than</option>
+                        <option value="lessThan" id="less">less than</option>
+                        <option value="greaterEqual" id="greaterEqual">greater than or equal to</option>
+                        <option value="lessEqual" id="lessEqual">less than or equal to</option>
+                        <option value="between" id="between">between</option>
+                        <option value="contains" id="contains">contains</option>
+                    </select>
+
+                </td>
+                <td>
+
+                    @if (Model.ColumnTypes[i].ColumnType == "INT" || Model.ColumnTypes[i].ColumnType == "NUMERIC")
+                    {
+                        <input type="number" id="firstFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "STRING")
+                    {
+                        <input type="text" id="firstFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "DATE")
+                    {
+                        <input type="date" id="firstFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "BOOL")
+                    {
+                        <input type="checkbox" id="firstFilter@(counter)" />
+                    }
+                </td>
+                <td>
+                    @if (Model.ColumnTypes[i].ColumnType == "INT" || Model.ColumnTypes[i].ColumnType == "NUMERIC")
+                    {
+                        <input type="number" id="secondFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "STRING")
+                    {
+                        <input type="text" id="secondFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "DATE")
+                    {
+                        <input type="date" id="secondFilter@(counter)" />
+                    }
+                    else if (Model.ColumnTypes[i].ColumnType == "BOOL")
+                    {
+                        <input type="checkbox" id="secondFilter@(counter)" disabled="disabled" />
+                    }
+                </td>
+                <td>
+                    <select id="include@(counter)">
+                        <option value="Choose" id="equals">Choose one</option>
+                        <option value="Yes" id="yes">Yes</option>
+                        <option value="No" id="no">No</option>
+                    </select>
+                </td>
+                <td>
+                    @if (Model.ColumnTypes[i].ColumnType == "INT" || Model.ColumnTypes[i].ColumnType == "NUMERIC")
+                    {
+                        <select id="additionalActions@(counter)">
+                            <option value="Choose" id="choose">Choose one</option>
+                            <option value="Sum" id="sum">Sum</option>
+                            <option value="Max" id="max">Max</option>
+                            <option value="Min" id="min">Min</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select id="additionalActions@(counter)" disabled="disabled">
+                            <option value="Choose" id="choose">Choose one</option>
+                            <option value="Sum" id="sum">Sum</option>
+                            <option value="Max" id="max">Max</option>
+                            <option value="Min" id="min">Min</option>
+                        </select>
+                    }
+                </td>
+
+            </tr>
+            counter++;
+        }
+    </table>
+    <div class="float-left" style=" margin-bottom: 25px">
+        <button type="button" id="previous" class=" btn bg-light border-primary text-dark" onclick="goBack()" style="justify-items: left">Previous</button>
+    </div>
+    <div class="float-right" style=" margin-bottom: 25px">
+        <button type="submit" id="runQueryButton" class=" btn bg-light border-primary text-dark" onclick="runQuery()" style="justify-items: right">Run Query</button>
+    </div>*@

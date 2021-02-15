@@ -1,0 +1,191 @@
+﻿
+@model CustomQuery.Models.ReportDictionary
+
+@{
+    List<string> headers = new List<string>();
+    @foreach (var item in Model.ReportResult)
+    {
+        headers.Add(item.Key.ToString());
+    }
+}
+
+<button id="downloadButton" class="lead" style="align-self: start" onclick="exportTableToExcel('headerTable', filename = 'report')">Download</button>
+<table class="table" id="headerTable">
+
+    <thead class="thead-dark">
+        <tr>
+            @foreach (var item in Model.ReportResult)
+            {
+                <th>
+                    @item.Key.ToString()
+                </th>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (int i = 0; i < Model.ReportResult[headers.First().ToString()].Count; i++)
+        {
+            <tr>
+                @foreach (var item in Model.ReportResult)
+                {
+                    <td>
+                            @item.Value[i]
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+
+<script>
+
+    function exportTableToExcel(tableID, filename = '') {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+
+    //$(document).ready(function () {
+    //    $("downloadButton").click(function () {
+    //        $("#headerTable").table2excel({
+    //exclude: ".noExl",
+    //name: "download",
+    //filename: "report",//do not include extension
+    //fileext: ".xls" // file extension
+    //        });
+
+    //    });
+
+    //});
+
+    //    function exportTableToCSV($table, filename) {
+            
+    //        //var $rows = $table.find('tr:has(td)'),
+
+    //        //    // Temporary delimiter characters unlikely to be typed by keyboard
+    //        //    // This is to avoid accidentally splitting the actual contents
+    //        //    tmpColDelim = String.fromCharCode(0) // vertical tab character
+    //        //    tmpRowDelim = String.fromCharCode(11), // null character
+
+    //            // actual delimiter characters for CSV format
+    //            colDelim = '","',
+    //                rowDelim = '"\r\n"',
+    //            $rows = $table.find('tr,th');
+
+    ////        var csvData = "";
+
+    ////        for (var i = 0; i < $rows.length; i++) {
+    ////            var $cells = $($rows[i]).children('th,td'); //header or content cells
+
+    ////            for (var y = 0; y < $cells.length; y++) {
+    ////                if (y > 0) {
+    ////                    csvData += ",";
+    ////                }
+    ////                var txt = ($($cells[y]).text()).toString().trim();
+    ////                if (txt.indexOf(',') >= 0 || txt.indexOf('\"') >= 0 || txt.indexOf('\n') >= 0) {
+    ////                    txt = "\"" + txt.replace(/\"/g, "\"\"") + "\"";
+    ////                }
+    ////                csvData += txt;
+    ////            }
+    ////            csvData += '\n';
+    ////        }
+
+
+
+    //            //// Grab text from table into CSV formatted string
+    //            //csv = '"' + $rows.map(function (i, row) {
+    //            //    var $row = $(row),
+    //            //        $cols = $row.find('td');
+
+    //            //    return $cols.map(function (j, col) {
+    //            //        var $col = $(col),
+    //            //            text = $col.text();
+
+    //            //        return text.replace(/"/g, '""'); // escape double quotes
+
+    //            //    }).get().join(tmpColDelim);
+
+    //            //}).get().join(tmpRowDelim)
+    //            //    .split(tmpRowDelim).join(rowDelim)
+    //            //    .split(tmpColDelim).join(colDelim) + '"';
+
+    //        // Deliberate 'false', see comment below
+    //        if (false && window.navigator.msSaveBlob) {
+
+    //            var blob = new Blob([decodeURIComponent(csvData)], {
+    //                type: 'text/csv;charset=utf8'
+    //            });
+
+    //            // Crashes in IE 10, IE 11 and Microsoft Edge
+    //            // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
+    //            // Hence, the deliberate 'false'
+    //            // This is here just for completeness
+    //            // Remove the 'false' at your own risk
+    //            window.navigator.msSaveBlob(blob, filename);
+
+    //        } else if (window.Blob && window.URL) {
+    //            // HTML5 Blob        
+    //            var blob = new Blob([csvData], { type: 'text/csv;charset=utf8' });
+    //            var csvUrl = URL.createObjectURL(blob);
+
+    //            $(this)
+    //                .attr({
+    //                    'download': filename,
+    //                    'href': csvUrl
+    //                });
+    //        } else {
+    //            // Data URI
+    //            var csv = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvData);
+
+    //            $(this)
+    //                .attr({
+    //                    'download': filename,
+    //                    'href': csv,
+    //                    'target': '_blank'
+    //                });
+    //        }
+    //    }
+
+    //    // This must be a hyperlink
+    //    $(".export").on('click', function (event) {
+    //        // CSV
+    //        var args = [$('#headerTable'), 'export.csv'];
+
+    //        exportTableToCSV.apply(this, args);
+
+    //        // If CSV, don't do event.preventDefault() or return false
+    //        // We actually need this to be a typical hyperlink
+    //    });
+    //});
+
+
+
+          
+</script>

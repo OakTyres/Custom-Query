@@ -1,0 +1,7 @@
+﻿@using System.Data
+@model DataSet
+
+@foreach(DataRow row in Model.Tables[0].Rows)
+    {
+        <p>@row</p>
+    }
